@@ -1,3 +1,7 @@
+/*Implement a simple way to do external sorting
+
+
+*/
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -6,7 +10,8 @@
 #include <limits>
 
 const int number_of_partitions = 10;
-
+//Responsible for reading the input file and put into the memory buffer 
+//It will return a vector
 std::vector<char> read_partition(const std::string& file_name, int partition_number) {
     std::ifstream file(file_name, std::ios::binary | std::ios::ate);
     if (!file.is_open()) {
@@ -26,7 +31,8 @@ std::vector<char> read_partition(const std::string& file_name, int partition_num
         std::cerr << "Error reading from file: " << file_name << std::endl;
     }
 }
-
+//Responsible for creating partitions
+//You give the input file and the base name you wanna give to the partitions files
 std::vector<std::string> generatePartitionFiles(const std::string& inputFileName, const std::string& baseFileName) {
     std::vector<std::string> partitionFileNames;
 
@@ -47,7 +53,7 @@ std::vector<std::string> generatePartitionFiles(const std::string& inputFileName
             myfile << x;
         }
 
-        myfile.close(); // Close the file explicitly
+        myfile.close(); 
     }
 
     return partitionFileNames;
